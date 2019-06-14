@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
 import PokeList from './components/PokeList';
 import fetchData from './data/Data';
 import Filter from './components/Filter';
+import './App.css';
 
 class App extends React.Component {
   constructor(props) {

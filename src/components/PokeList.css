@@ -1,0 +1,15 @@
+.pokemon__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokemon__item {
+    height: 250px;
+    width: 250px;
+    margin: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

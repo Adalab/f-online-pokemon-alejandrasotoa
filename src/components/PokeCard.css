@@ -1,0 +1,8 @@
+.pokemon__photo--container {
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon__photo {
+    height: 100px;
+}
