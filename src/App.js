@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import PokeList from './components/PokeList';
+import fetchData from './data/Data';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,8 +12,7 @@ class App extends React.Component {
   }
 
   fetchPokemons() {
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=25")
-      .then(response => response.json())
+    fetchData()
       .then(data => {
         data.results.map(item =>
           fetch(item.url)
@@ -19,16 +20,15 @@ class App extends React.Component {
             .then(data => this.setState(prevState => ({ pokemons: [...prevState.pokemons, { ...data }] }))
             )
         )
-      }
-      )
+      })
   }
 
   componentDidMount() {
     const isLocalStorage = JSON.parse(localStorage.getItem('pokemonList'));
-    if (isLocalStorage.length === 0) {
+    if (isLocalStorage === null) {
       this.fetchPokemons();
     } else {
-      this.setState({ pokemons: [ ...isLocalStorage ] })
+      this.setState({ pokemons: [...isLocalStorage] })
     }
   }
 
@@ -39,12 +39,17 @@ class App extends React.Component {
   }
 
   render() {
+    const { pokemons } = this.state;
+
     if (this.state.pokemons.length === 0) {
       return <p>Cargando...</p>
     }
-    return <div className="App">
-      {/* {this.state.pokemons.map(item => <li>{item.name}</li>)} */}
-    </div>;
+
+    return (
+      <div className="App">
+        <PokeList pokemons={pokemons} />
+      </div>
+    );
   }
 }
 
