@@ -2,13 +2,16 @@ import React from 'react';
 import './App.css';
 import PokeList from './components/PokeList';
 import fetchData from './data/Data';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemons: []
+      pokemons: [],
+      filterValue: ''
     };
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   fetchPokemons() {
@@ -38,8 +41,14 @@ class App extends React.Component {
     }
   }
 
+  handleFilter(event) {
+    this.setState({
+      filterValue: event.currentTarget.value
+    });
+  }
+
   render() {
-    const { pokemons } = this.state;
+    const { pokemons, filterValue } = this.state;
 
     if (this.state.pokemons.length === 0) {
       return <p>Cargando...</p>
@@ -47,7 +56,8 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <PokeList pokemons={pokemons} />
+        <Filter handleFilter={this.handleFilter} />
+        <PokeList pokemons={pokemons} filterValue={filterValue} />
       </div>
     );
   }
