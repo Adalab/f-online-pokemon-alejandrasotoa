@@ -1,0 +1,19 @@
+.filter__container {
+    display: flex;
+    width: 100%;
+}
+
+.filter__label {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+.filter__input {
+    width: 70%;
+    margin: 0 auto;
+    height: 30px;
+    box-shadow: 0 0 10px rgba(0,0, 0, 0.5);
+    border: none;
+    text-align: center;
+}

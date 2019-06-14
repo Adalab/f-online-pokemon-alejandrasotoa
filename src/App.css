@@ -1,8 +1,12 @@
 body {
   margin: 0;
+  background-color: yellow;
 }
 
 .App {
-  background-color: yellow;
   padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

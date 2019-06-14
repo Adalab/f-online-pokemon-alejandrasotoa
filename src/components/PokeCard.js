@@ -2,19 +2,27 @@ import React from 'react';
 import './PokeCard.css';
 
 function PokeCard (props) {
-  const {id, name, abilities, sprites} = props.item;
+  const {name, types, sprites} = props.item;
+  const {index} = props;
   return (
     <React.Fragment>
       <div className="pokemon__photo--container">
-      <img src={sprites.front_default} alt={`Foto de ${name}`} className="pokemon__photo"/>
+        <div
+          style={{backgroundImage: `url(${sprites.front_default})`}}
+          className="pokemon__photo"
+        />
+        <small className="pokemon__id">ID / {index + 1}</small>
       </div>
-      <small>{id}</small>
-      <h2>{name}</h2>
-      <ul className="poke__abilities">
-        {abilities.map ((item, index) => (
-          <li key={`poke-ab-${index}`}>{item.ability.name}</li>
-        ))}
-      </ul>
+      <div className="pokemon__info--container">
+        <h2 className="pokemon__name">{name}</h2>
+        <ul className="poke__type">
+          {types.map ((item, index) => (
+            <li key={`poke-ab-${index}`} className="poke__type--item">
+              {item.type.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </React.Fragment>
   );
 }
