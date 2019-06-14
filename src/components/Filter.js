@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Filter.css';
 
 function Filter (props) {
@@ -11,6 +12,10 @@ function Filter (props) {
       <input name="filter" className="filter__input" onChange={handleFilter} placeholder="Filtrar pokemons por nombre..." />
     </div>
   );
+}
+
+Filter.propTypes = {
+  handleFilter : PropTypes.func,
 }
 
 export default Filter;

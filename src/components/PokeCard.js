@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './PokeCard.css';
 
 function PokeCard (props) {
@@ -25,6 +26,13 @@ function PokeCard (props) {
       </div>
     </React.Fragment>
   );
+}
+
+PokeCard.propTypes = {
+  name : PropTypes.string,
+  types : PropTypes.array,
+  sprites : PropTypes.array,
+  index : PropTypes.number
 }
 
 export default PokeCard;
