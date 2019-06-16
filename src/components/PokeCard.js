@@ -29,10 +29,10 @@ function PokeCard (props) {
 }
 
 PokeCard.propTypes = {
-  name : PropTypes.string,
-  types : PropTypes.array,
-  sprites : PropTypes.array,
-  index : PropTypes.number
-}
+  name: PropTypes.string,
+  types: PropTypes.array,
+  sprites: PropTypes.array,
+  index: PropTypes.number,
+};
 
 export default PokeCard;
