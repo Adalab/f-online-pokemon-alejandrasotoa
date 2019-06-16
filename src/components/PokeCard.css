@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: lightgray;
-    height: 70%;
+    height: 60%;
     width: 100%;
 }
 
@@ -19,11 +19,13 @@
     width: 50px;
     height: 10%;
     text-align: center;
+    color: rgb(48, 23, 3);
+    padding: 5px;
 }
 
 .pokemon__info--container {
     width: 100%;
-    height: 30%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,7 +40,7 @@
 .poke__type {
     list-style: none;
     display: flex;
-    margin: 0 0 0 10px;
+    margin: 5px 0 0 10px;
     padding: 0;
 }
 
@@ -49,6 +51,7 @@
     padding: 2px;
     font-size: 12px;
     text-transform: uppercase;
+    color: rgb(48, 23, 3);	
 }
 .poke__type--item:first-child {
     margin-left: 0px;

@@ -2,11 +2,14 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    max-width: 80%; 
 }
 
 .pokemon__item {
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
     margin: 10px;
     background-color: white;
     display: flex;

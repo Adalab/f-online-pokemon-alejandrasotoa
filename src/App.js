@@ -56,8 +56,12 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <div className="ears"></div>
+        <div className="ears"></div>
         <Filter handleFilter={this.handleFilter} />
         <PokeList pokemons={pokemons} filterValue={filterValue} />
+        <div className="cheeks"></div>
+        <div className="cheeks"></div>
       </div>
     );
   }
