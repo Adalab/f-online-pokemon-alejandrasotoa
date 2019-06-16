@@ -3,7 +3,7 @@ This is an aplication to look for your favorite pokemon and know the basic infor
 
 I used React to make this SPA. The API consulted was https://pokeapi.co/.
 
-## I want a copy of this projects.
+## I want a copy of this project.
 This is what you have to do:
 1. Download or clone the project repository.
 2. Install dependencies with `$ npm install`.
