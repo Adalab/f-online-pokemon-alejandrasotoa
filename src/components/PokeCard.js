@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './PokeCard.css';
 
-function PokeCard (props) {
+const PokeCard = (props) => {
   const {name, types, sprites} = props.item;
   const {index} = props;
   return (

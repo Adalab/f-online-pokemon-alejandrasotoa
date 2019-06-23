@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Filter.css';
 
-function Filter (props) {
+const Filter = props => {
   const {handleFilter} = props;
   return (
     <div className="filter__container">
@@ -17,7 +17,7 @@ function Filter (props) {
       />
     </div>
   );
-}
+};
 
 Filter.propTypes = {
   handleFilter: PropTypes.func,

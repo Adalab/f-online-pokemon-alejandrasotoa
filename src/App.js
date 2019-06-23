@@ -1,75 +1,48 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PokeList from './components/PokeList';
 import fetchData from './data/Data';
 import Filter from './components/Filter';
 import './App.css';
 
-class App extends React.Component {
-  constructor (props) {
-    super (props);
-    this.state = {
-      pokemons: [],
-      filterValue: '',
-    };
-    this.handleFilter = this.handleFilter.bind (this);
-  }
+const App = () => {
+  const [pokemons] = useState ([]);
+  const [filterValue, setFilterValue] = useState ('');
+  const [isLoading, setIsLoading] = useState (true);
 
-  fetchPokemons () {
-    fetchData ().then (data => {
-      data.results.map (item =>
-        fetch (item.url)
-          .then (response => response.json ())
-          .then (data =>
-            this.setState (prevState => ({
-              pokemons: [...prevState.pokemons, {...data}],
-            }))
-          )
-      );
-    });
-  }
-
-  componentDidMount () {
-    const isLocalStorage = JSON.parse (localStorage.getItem ('pokemonList'));
-    if (isLocalStorage === null) {
-      this.fetchPokemons ();
-    } else {
-      this.setState ({pokemons: [...isLocalStorage]});
+  useEffect (() => {
+    if (isLoading === true) {
+      fetchData ().then (data => {
+        data.results.map (item =>
+          fetch (item.url).then (response => response.json ()).then (data => {
+            pokemons.push ({...data});
+            if (pokemons.length === 25) {
+              setIsLoading (false);
+            }
+          })
+        );
+      });
     }
-  }
+  });
 
-  componentDidUpdate () {
-    if (this.state.pokemons.length === 25) {
-      localStorage.setItem (
-        'pokemonList',
-        JSON.stringify (this.state.pokemons)
-      );
-    }
-  }
 
-  handleFilter (event) {
-    this.setState ({
-      filterValue: event.currentTarget.value,
-    });
-  }
+  const handleFilter = event => {
+    setFilterValue (event.currentTarget.value);
+  };
 
-  render () {
-    const {pokemons, filterValue} = this.state;
-
-    if (this.state.pokemons.length === 0) {
-      return <p>Cargando...</p>;
-    }
-
+  if (isLoading === true) {
+    return <p>Cargando...</p>;
+  } else {
     return (
       <div className="App">
         <div className="ears" />
         <div className="ears" />
-        <Filter handleFilter={this.handleFilter} />
+        <Filter handleFilter={handleFilter}/>
         <PokeList pokemons={pokemons} filterValue={filterValue} />
         <div className="cheeks" />
         <div className="cheeks" />
       </div>
     );
   }
-}
+};
 
 export default App;

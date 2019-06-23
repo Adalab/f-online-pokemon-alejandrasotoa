@@ -3,7 +3,7 @@ import PokeCard from './PokeCard';
 import PropTypes from 'prop-types';
 import './PokeList.css';
 
-function PokeList (props) {
+const PokeList = props => {
   const {pokemons, filterValue} = props;
   const newList = pokemons
     .filter (item =>
@@ -16,7 +16,6 @@ function PokeList (props) {
         </li>
       );
     });
-
   return (
     <React.Fragment>
       {newList.length !== 0
@@ -26,7 +25,7 @@ function PokeList (props) {
         : <h2>No hay resultados para mostrar</h2>}
     </React.Fragment>
   );
-}
+};
 
 PokeList.propTypes = {
   pokemons: PropTypes.array,
