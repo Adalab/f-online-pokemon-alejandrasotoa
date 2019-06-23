@@ -1,6 +1,4 @@
-const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/?limit=25';
-
-const fetchData = () => fetch(ENDPOINT).then(response => response.json());
+const fetchData = dataUrl => fetch(dataUrl).then(response => response.json());
 
 export default fetchData;
 

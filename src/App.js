@@ -5,6 +5,8 @@ import PokeDetail from './components/PokeDetail';
 import {Route, Switch} from 'react-router-dom';
 import './App.css';
 
+const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/?limit=25';
+
 const App = () => {
   const [pokemons] = useState ([]);
   const [filterValue, setFilterValue] = useState ('');
@@ -12,24 +14,20 @@ const App = () => {
 
   useEffect (() => {
     if (isLoading === true) {
-      fetchData ().then (data => {
+      fetchData (ENDPOINT).then (data => {
         data.results.map (item => {
-          return fetch (item.url)
-            .then (response => response.json ())
-            .then (data => {
-              let newData = data;
-              fetch (data.species.url)
-                .then (response => response.json ())
-                .then (dataEvolution => {
-                  pokemons.push ({
-                    ...newData,
-                    evolves_from: dataEvolution.evolves_from_species,
-                  });
-                  if (pokemons.length === 25) {
-                    setIsLoading (false);
-                  }
-                });
+          return fetchData (item.url).then (data => {
+            let newData = data;
+            fetchData (data.species.url).then (dataEvolution => {
+              pokemons.push ({
+                ...newData,
+                evolves_from: dataEvolution.evolves_from_species,
+              });
+              if (pokemons.length === 25) {
+                setIsLoading (false);
+              }
             });
+          });
         });
       });
     }
