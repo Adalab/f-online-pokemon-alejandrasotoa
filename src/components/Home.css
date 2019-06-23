@@ -1,0 +1,30 @@
+.cheeks {
+    height: 180px;
+    width: 180px;
+    background-color: #F62D14;
+    border-radius: 50%;
+    position: fixed;
+    right: -90px;
+    bottom: -90px;
+  }
+  
+  .cheeks:last-child {
+    left: -90px;
+  }
+  
+  .ears {
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    position: fixed;
+    top: -60px;
+    transform: rotate(45deg);
+  } 
+  
+  .ears:nth-child(1) {
+    left: -60px;
+  }
+  
+  .ears:nth-child(2) {
+    right: -60px;
+  }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import PokeList from './components/PokeList';
 import fetchData from './data/Data';
-import Filter from './components/Filter';
+import Home from './components/Home';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
 
 const App = () => {
@@ -41,13 +41,17 @@ const App = () => {
   } else {
     return (
       <div className="App">
-        <div className="ears" />
-        <div className="ears" />
-        <Filter handleFilter={handleFilter} />
-        <PokeList pokemons={pokemons} filterValue={filterValue} />
-        <div className="cheeks" />
-        <div className="cheeks" />
-      </div>
+        <Switch>
+          <Route exact path = "/"
+          render={() =>(
+            < Home
+            handleFilter={handleFilter}
+            filterValue={filterValue}
+            pokemons={pokemons} />
+          )}
+          />
+        </Switch>
+      </div>     
     );
   }
 };
