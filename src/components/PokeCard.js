@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import './PokeCard.css';
 
 const PokeCard = props => {
-  const {name, types, sprites, evolves_from} = props.item;
+  const {name, types, sprites, evolves_from, id} = props.item;
   const {index} = props;
   return (
-    <React.Fragment>
+    <Link to={`/pokemon/${id}`} className="pokemon__link">
       <div className="pokemon__photo--container">
         <div
           style={{backgroundImage: `url(${sprites.front_default})`}}
@@ -30,7 +31,7 @@ const PokeCard = props => {
             </div>
           : ''}
       </div>
-    </React.Fragment>
+    </Link>
   );
 };
 

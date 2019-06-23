@@ -7,6 +7,28 @@
     right: -90px;
     bottom: -90px;
   }
+
+  .home__container {
+    margin: 20px;
+    width: 100%;
+    animation-name: show-list;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
+  }
+
+  @keyframes show-list {
+    0% {
+      transform: translate(1500px);
+      opacity: 0;
+   }
+    95% {
+      transform: translate(0);
+      opacity: 0.9;
+   }
+   100% {
+      opacity: 1;
+  }
+  }
   
   .cheeks:last-child {
     left: -90px;

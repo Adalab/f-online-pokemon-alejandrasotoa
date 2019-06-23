@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import fetchData from './data/Data';
 import Home from './components/Home';
+import PokeDetail from './components/PokeDetail';
 import {Route, Switch} from 'react-router-dom';
 import './App.css';
 
@@ -13,20 +14,22 @@ const App = () => {
     if (isLoading === true) {
       fetchData ().then (data => {
         data.results.map (item => {
-          fetch (item.url).then (response => response.json ()).then (data => {
-            let newData = data;
-            fetch (data.species.url)
-              .then (response => response.json ())
-              .then (dataEvolution => {
-                pokemons.push ({
-                  ...newData,
-                  evolves_from: dataEvolution.evolves_from_species,
+          return fetch (item.url)
+            .then (response => response.json ())
+            .then (data => {
+              let newData = data;
+              fetch (data.species.url)
+                .then (response => response.json ())
+                .then (dataEvolution => {
+                  pokemons.push ({
+                    ...newData,
+                    evolves_from: dataEvolution.evolves_from_species,
+                  });
+                  if (pokemons.length === 25) {
+                    setIsLoading (false);
+                  }
                 });
-                if (pokemons.length === 25) {
-                  setIsLoading (false);
-                }
-              });
-          });
+            });
         });
       });
     }
@@ -41,17 +44,33 @@ const App = () => {
   } else {
     return (
       <div className="App">
+        <div className="ears" />
+        <div className="ears" />
         <Switch>
-          <Route exact path = "/"
-          render={() =>(
-            < Home
-            handleFilter={handleFilter}
-            filterValue={filterValue}
-            pokemons={pokemons} />
-          )}
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Home
+                handleFilter={handleFilter}
+                filterValue={filterValue}
+                pokemons={pokemons}
+              />
+            )}
+          />
+          <Route
+            path="/pokemon/:id"
+            render={routerProps => (
+              <PokeDetail
+                match={routerProps.match.params}
+                pokemons={pokemons}
+              />
+            )}
           />
         </Switch>
-      </div>     
+        <div className="cheeks" />
+        <div className="cheeks" />
+      </div>
     );
   }
 };
