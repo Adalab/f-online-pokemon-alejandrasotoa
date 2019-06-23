@@ -24,7 +24,6 @@ const App = () => {
     }
   });
 
-
   const handleFilter = event => {
     setFilterValue (event.currentTarget.value);
   };
