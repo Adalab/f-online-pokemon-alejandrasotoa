@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './PokeCard.css';
 
-const PokeCard = (props) => {
-  const {name, types, sprites} = props.item;
+const PokeCard = props => {
+  const {name, types, sprites, evolves_from} = props.item;
   const {index} = props;
   return (
     <React.Fragment>
@@ -23,10 +23,16 @@ const PokeCard = (props) => {
             </li>
           ))}
         </ul>
+        {evolves_from !== null
+          ? <div className="pokemon__evolves--container">
+              <p className="pokemon__evolves--title">Evoluciona de:</p>
+              <p className="pokemon__evolves--name">{evolves_from.name}</p>
+            </div>
+          : ''}
       </div>
     </React.Fragment>
   );
-}
+};
 
 PokeCard.propTypes = {
   name: PropTypes.string,
