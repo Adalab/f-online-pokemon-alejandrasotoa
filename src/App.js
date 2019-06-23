@@ -12,14 +12,22 @@ const App = () => {
   useEffect (() => {
     if (isLoading === true) {
       fetchData ().then (data => {
-        data.results.map (item =>
+        data.results.map (item => {
           fetch (item.url).then (response => response.json ()).then (data => {
-            pokemons.push ({...data});
-            if (pokemons.length === 25) {
-              setIsLoading (false);
-            }
-          })
-        );
+            let newData = data;
+            fetch (data.species.url)
+              .then (response => response.json ())
+              .then (dataEvolution => {
+                pokemons.push ({
+                  ...newData,
+                  evolves_from: dataEvolution.evolves_from_species,
+                });
+                if (pokemons.length === 25) {
+                  setIsLoading (false);
+                }
+              });
+          });
+        });
       });
     }
   });
@@ -35,7 +43,7 @@ const App = () => {
       <div className="App">
         <div className="ears" />
         <div className="ears" />
-        <Filter handleFilter={handleFilter}/>
+        <Filter handleFilter={handleFilter} />
         <PokeList pokemons={pokemons} filterValue={filterValue} />
         <div className="cheeks" />
         <div className="cheeks" />
